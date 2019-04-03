@@ -16,7 +16,7 @@ export default {
     return axios.get("/api/users/profile");
   },
 
-  // checks to see if the user is logged in and and admin, then returns the user
+  // checks to see if the user is logged in and admin, then returns the user
   isAdmin: function() {
     return axios.get("/api/users/logout")
   },
