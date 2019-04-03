@@ -35,7 +35,7 @@ const userSchema = new Schema({
   }
 });
 
-usersSchema.methods.generateHash = function(password) {
+userSchema.methods.generateHash = function(password) {
     return bcrypt.hashSync(password, bcrypt.genSaltSync(10));
 }
 
