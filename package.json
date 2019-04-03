@@ -1,0 +1,29 @@
+{
+  "name": "fourteener",
+  "version": "1.0.0",
+  "description": "react app with passport auth",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bnkfick/14er-Time.git"
+  },
+  "keywords": [],
+  "author": "Evan E J Tucker",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bnkfick/14er-Time/issues"
+  },
+  "homepage": "https://github.com/bnkfick/14er-Time#readme",
+  "dependencies": {
+    "bcrypt-nodejs": "0.0.3",
+    "express": "^4.16.4",
+    "mongoose": "^5.4.5",
+    "path": "^0.12.7"
+  },
+  "devDependencies": {
+    "colors": "^1.3.3"
+  }
+}
