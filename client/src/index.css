@@ -1,0 +1,18 @@
+body {
+    background-image: url("https://cdn2.outdoorphotographer.com/contests/496458/Bill_Tuttle_Maroon-Bells-and-Maroon-Lake.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    /* background-position: center; */
+   
+    background-size: cover;
+    text-align: center
+}
+
+.spec-text {
+    font-family: 'Special Elite', cursive;
+}
+
+.ls-25 {
+    letter-spacing: 0.25rem;
+}
+

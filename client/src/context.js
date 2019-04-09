@@ -13,11 +13,11 @@ class UserProvider extends Component {
         username: "",
         password: "",
         loggedIn: false,
-        user: null
+        user: null,
+        failureMessage: null
     }
 
     componentDidMount() {
-        console.log(this.state);
         this.isLoggedIn();
     }
 
@@ -31,7 +31,6 @@ class UserProvider extends Component {
 
     handleLogin = event => {
         event.preventDefault();
-        console.log(this.state)
         if (this.state.username && this.state.password) {
             API.login({
                 username: this.state.username,
@@ -43,9 +42,9 @@ class UserProvider extends Component {
                         user: user.data.user
                     });
                     console.log("log in successful");
-                    console.log(this.state);
                     window.location.href = '/profile';
                 } else {
+                    console.log("Something went wrong :(")
                     console.log(user);
                 }
             });
@@ -54,7 +53,7 @@ class UserProvider extends Component {
 
     handleSignup = event => {
         event.preventDefault();
-        console.log(this.state)
+        console.log("Signup");
         if (this.state.username && this.state.password) {
             API.signup({
                 firstname: this.state.firstname,
@@ -68,28 +67,48 @@ class UserProvider extends Component {
                         loggedIn: true,
                         user: user.data.user
                     });
-                    console.log("log in successful")
-                    console.log(this.state)
+                    console.log("log in successful");
+                    window.location.href = '/profile';
                 } else {
+                    console.log("something went wrong :(");
                     console.log(user.data);
+                    this.setState({
+                        failureMessage: user.data
+                    })
                 }
             });
         }
     }
 
     isLoggedIn = ()=> {
+        console.log("isLoggedIn A");
         if (!this.state.loggedIn) {
+            console.log("isLoggedIn B");
             API.isLoggedIn().then(user => {
-                console.log(user);
+                console.log("isLoggedIn C");
                 if(user.data.loggedIn) {
+                    console.log("isLoggedIn if");
                     this.setState({
                         loggedIn: true,
                         user: user.data.user
                     });
-                     
                 } else {
+                    console.log("isLoggedIn else");
                     console.log(user.data.message);
                 }
+            })
+            .catch(err => console.log(err));
+        }
+    }
+
+    logout = ()=> {
+        if (this.state.loggedIn) {
+            API.logout().then(()=> {
+                console.log("logged out successfully");
+                this.setState({
+                    loggedIn: false,
+                    user: null
+                })
             })
         }
     }
@@ -99,7 +118,8 @@ class UserProvider extends Component {
             data: this.state,
             inputChange: this.handleInputChange,
             handleLogin: this.handleLogin,
-            handleSignup: this.handleSignup
+            handleSignup: this.handleSignup,
+            logout: this.logout
         }
         return (
             <UserContext.Provider value={
@@ -112,3 +132,4 @@ class UserProvider extends Component {
 }
 
 export default UserProvider
+
