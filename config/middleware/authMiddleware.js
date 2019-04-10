@@ -1,5 +1,6 @@
 const auth = {
     isLoggedIn: (req, res, next)=> {
+        console.log("AUTH MIDDLEWARE");
         if(req.isAuthenticated()){
             console.log('user authenticated');
             next();

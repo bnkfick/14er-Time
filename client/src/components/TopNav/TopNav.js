@@ -32,9 +32,12 @@ export default class Navigation extends Component {
     }
     render() {
         return (
-            <div>
-                <Navbar className="navbar" light expand="md">
-                    <NavbarBrand href="/">React Auth</NavbarBrand>
+            <>
+                <Navbar className="navbar navbar-dark" expand="md">
+                    <NavbarBrand href="/"> 
+                    <img className="nav-bar-logo" src="/assets/images/co-mtn-logo.png" alt="" />
+                    <span className="spec-text">14'er Friend</span>
+                    </NavbarBrand>
                     <NavbarToggler onClick={this.toggle} />
                     <Collapse isOpen={this.state.isOpen} navbar>
                         <Nav className="ml-auto" navbar>
@@ -60,7 +63,7 @@ export default class Navigation extends Component {
                         </Nav>
                     </Collapse>
                 </Navbar>
-            </div>
+            </>
         );
     }
 }

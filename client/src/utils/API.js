@@ -11,10 +11,16 @@ export default {
   },
 
   isLoggedIn: function() {
+    console.log("API.isLoggedIn");
     return axios.get("/api/users/profile");
   },
 
   logout: function() {
-    return axios.get("/api/users/logout")
-  }
+    return axios.get("/api/users/logout");
+  },
+
+  getMtns: function() {
+    return axios.get("/api/mountains/");
+  },
+
 };
