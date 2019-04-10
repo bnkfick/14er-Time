@@ -1,8 +1,20 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'reactstrap';
-import API from "../../utils/API";
 import axios from "axios";
+import styled from 'styled-components';
 
+import API from "../../utils/API";
+
+
+const StyledCol = styled(Col)`
+    background-image: ${ props => props.snowy ? 'url("http://icons.iconarchive.com/icons/icons8/christmas-flat-color/256/snowflake-icon.png")' : ""};
+`
+const StyledTemp = styled(Col)`
+    background-color: ${ props => props.bgcolor };
+`
+const StyledWindSpeed = styled(Col)`
+    background-color: ${ props => props.bgcolor };
+`
 class Mtns extends Component {
     state = {
       mountains: [],
@@ -59,48 +71,84 @@ class Mtn extends Component {
 
   componentDidMount() {
     console.log("GETTING WEATHER IN componentDidMount");
-    axios.get(this.state.mountain.weatherLink[0]).then(response => {
-      console.log(response);
-      //console.log("TEMPERTURE: " + response.properties.periods[0].temperature);
-      console.log("TEMPERTURE: " + response.data.properties.periods[0].temperature);
+    axios.get(this.state.mountain.weatherLink[0])
+    .then(response => {
+      console.log(response.data.properties.periods[0]);
       this.setState({ weatherData: response.data.properties.periods[0]});
-      // this.state.number = response.data.properties.periods[0].number;
-      // this.state.startTime = response.data.properties.periods[0].startTime;
-      // this.state.temperature = response.data.properties.periods[0].temperature;
-      // this.state.windSpeed = response.data.properties.periods[0].windSpeed;
-      // this.state.windDirection = response.data.properties.periods[0].windDirection;
-      // this.state.shortForecast = response.data.properties.periods[0].shortForecast;
-      // this.state.detailedForecast = response.data.properties.periods[0].detailedForecast;
-      // this.state.icon = response.data.properties.periods[0].icon;
-
-      // console.log(this.state.times);
-  });
+    })        
+    .catch(err => console.log(err));
   }
 
+  windspeedColor() {
+      //Conditional Formatting for Windspeed
+      var windSpeedString = this.state.weatherData.windSpeed;
+      if (windSpeedString != null) {
+      var windSpeedRange = windSpeedString.match(/\d+/g).map(Number);
+
+      if (windSpeedRange[1] > 75) {
+          return "rgba(191, 78, 63, 0.4)";
+      } else if ( (windSpeedRange[0] > 30) && (windSpeedRange[1] <= 75 ) ) {
+         return "rgba(229, 238, 73, 0.4)";
+      } else {
+          return "rgba(63, 191, 63, 0.4)";
+      }
+    }
+  }
+  getTempColor() {
+
+      if (this.state.weatherData.temperature < 32) {
+           return "rgb(30, 201, 255, 0.4)";
+      } else if ((this.state.weatherData.temperature > 32) && (this.state.weatherData.temperature < 60) ) {
+          return "rgba(63, 191, 63, 0.4)";
+      } else {
+          return "rgba(191, 78, 63, 0.4)";
+      }
+  }
+  isSnowy() {
+    //Conditional Formatting for Short Forecast
+    let shortForecast = this.state.weatherData.shortForecast;
+
+    if ((shortForecast === "Chance Snow Showers") ||
+    (shortForecast === "Snow Showers Likely") ||
+    (shortForecast === "Snow Showers") ||
+    (shortForecast  === "Slight Chance Snow Showers") ||
+    (shortForecast === "Partly Cloudy then Slight Chance Snow Showers") ||
+    (shortForecast === "Mostly Cloudy then Chance Snow Showers") ||
+    (shortForecast === "Snow Showers Likely And Patchy Blowing Snow") ||
+    (shortForecast  === "Isolated Snow Showers then Mostly Sunny")) 
+    {
+      return 1;
+    } else {
+      return 0;
+    }
+  }
 
   render() {
     return (
       <li className="list-group-item">
         <Container>
           <Row>
-          <Col size="md-2">
-            Rank: {this.state.mountain.rank}
+          <Col size="md-1">
+            { this.state.mountain.rank }
             </Col>
             <Col size="md-2">
-            {this.state.mountain.peakName}
+            { this.state.mountain.peakName }
             </Col>
             <Col size="md-2">
-              Elevation: {this.state.mountain.elevation}
+              { this.state.mountain.elevation }
             </Col>
             <Col size="md-2">
-              Wind Direction: {this.state.weatherData.windDirection}
+              { this.state.weatherData.windDirection }
             </Col>
-            <Col size="md-2">
-              Wind Speed: {this.state.weatherData.windSpeed}
-            </Col>
-            <Col size="md-2">
-              Temperature: {this.state.weatherData.temperature + String.fromCharCode(176) + " F"}
-            </Col>
+            <StyledWindSpeed size="md-1" bgcolor={this.windspeedColor()}>
+              { this.state.weatherData.windSpeed }
+            </StyledWindSpeed>
+            <StyledTemp size="md-1" bgcolor={this.getTempColor()}>
+              { this.state.weatherData.temperature + String.fromCharCode(176) + " " + this.state.weatherData.temperatureUnit }
+            </StyledTemp>
+            <StyledCol size="md-3" snowy={this.isSnowy()}>
+              { this.state.weatherData.shortForecast }
+            </StyledCol>
           </Row>
         </Container>
       </li>
