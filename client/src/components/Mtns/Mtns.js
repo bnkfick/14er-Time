@@ -1,21 +1,19 @@
 import React, { Component } from "react";
 import { Container, Row, Col } from 'reactstrap';
 import API from "../../utils/API";
+import axios from "axios";
 
 class Mtns extends Component {
     state = {
-      mountains: []
+      mountains: [],
     };
 
     
-
     componentDidMount() {
       console.log("GETTING MOUNTAINS IN componentDidMount");
       API.getMtns()
         .then(res => {
-
           this.setState({ mountains: res.data })
-          console.log(typeof this.state.mountains);
         })
         .catch(err => console.log(err));
     }
@@ -32,16 +30,14 @@ class Mtns extends Component {
                       <>
                       { this.state.mountains.map( mountain => {
                         return (
-                      <Mountain
-                        key={mountain.rank}
-                        peakName={mountain.peakName}
-                        elevation={mountain.elevation}
-                        rank={mountain.rank}
-                      />
-                    );
-                      }) }
-                      </>
-                    )}
+                                <Mtn
+                                    key={mountain.rank}
+                                    mountain={mountain}
+                                  />
+                                );
+                            }) }
+                            </>
+                          )}
                   </Col>
                 </Row>
                 </Container>
@@ -53,28 +49,61 @@ class Mtns extends Component {
 
 export default Mtns;
 
-// RecipeListItem renders a bootstrap list item containing data from the recipe api call
-export function Mountain({
-    rank,
-    peakName,
-    elevation,
-    id
-  }) {
+
+
+class Mtn extends Component {
+  state = {
+    mountain: this.props.mountain,
+    weatherData:{}
+  };
+
+  componentDidMount() {
+    console.log("GETTING WEATHER IN componentDidMount");
+    axios.get(this.state.mountain.weatherLink[0]).then(response => {
+      console.log(response);
+      //console.log("TEMPERTURE: " + response.properties.periods[0].temperature);
+      console.log("TEMPERTURE: " + response.data.properties.periods[0].temperature);
+      this.setState({ weatherData: response.data.properties.periods[0]});
+      // this.state.number = response.data.properties.periods[0].number;
+      // this.state.startTime = response.data.properties.periods[0].startTime;
+      // this.state.temperature = response.data.properties.periods[0].temperature;
+      // this.state.windSpeed = response.data.properties.periods[0].windSpeed;
+      // this.state.windDirection = response.data.properties.periods[0].windDirection;
+      // this.state.shortForecast = response.data.properties.periods[0].shortForecast;
+      // this.state.detailedForecast = response.data.properties.periods[0].detailedForecast;
+      // this.state.icon = response.data.properties.periods[0].icon;
+
+      // console.log(this.state.times);
+  });
+  }
+
+
+  render() {
     return (
       <li className="list-group-item">
         <Container>
           <Row>
           <Col size="md-2">
-            Rank: {rank}
+            Rank: {this.state.mountain.rank}
             </Col>
             <Col size="md-2">
-            {peakName}
+            {this.state.mountain.peakName}
             </Col>
             <Col size="md-2">
-              Elevation: {elevation}
+              Elevation: {this.state.mountain.elevation}
+            </Col>
+            <Col size="md-2">
+              Wind Direction: {this.state.weatherData.windDirection}
+            </Col>
+            <Col size="md-2">
+              Wind Speed: {this.state.weatherData.windSpeed}
+            </Col>
+            <Col size="md-2">
+              Temperature: {this.state.weatherData.temperature + String.fromCharCode(176) + " F"}
             </Col>
           </Row>
         </Container>
       </li>
     );
   }
+}
