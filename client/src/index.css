@@ -5,7 +5,25 @@ body {
     /* background-position: center; */
    
     background-size: cover;
-    text-align: center
+    text-align: center;
+    height: 100%;
+    margin: 0;
+    font-family: 'Poppins', sans-serif;
+    color: whitesmoke;
+}
+
+/* Backgrounds */
+.glass {
+    /* width: 100%; */
+    background-color: rgba(19, 18, 18, 0.671);
+    backdrop-filter: blur(5px);   
+    -webkit-backdrop-filter: blur(5px);  
+    padding: 0 1em 0 1em;
+    /* color: whitesmoke; */
+}
+
+.ghost{
+    color: transparent;
 }
 
 .center {
@@ -34,4 +52,5 @@ body {
 .ls-25 {
     letter-spacing: 0.25rem;
 }
+
 
