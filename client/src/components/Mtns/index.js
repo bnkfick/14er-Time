@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import axios from "axios";
 import styled from 'styled-components';
 import "./style.css";
+import Routes from "./Routes";
 import API from "../../utils/API";
 
 
@@ -39,16 +40,16 @@ class Mtns extends Component {
                 <Container className="glass">
 
                             <Row className="mtn-row">
-                                {/* <Col className="w2  h9 align-middle">Favorite</Col> */}
-                                <Col className="w2  align-middle">Rank</Col>
-                                <Col className="w10  align-middle">Mountain</Col>
-                                <Col className="w8  align-middle">Elevation</Col>
-                                <Col className="w8  align-middle">Wind Direction</Col>
-                                <Col className="w8  align-middle">Wind Speed</Col>
-                                <Col className="w8  align-middle">Current Temp</Col>
-                                <Col className="w10  align-middle">Short Forecast</Col>
-                                {/* <th className="w6 align-middle">Distance from You</Col> */}
-                                <Col className="w2  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
+                                {/* <Col className="w2  mtn-col  h9 align-middle">Favorite</Col> */}
+                                <Col className="w2  mtn-col align-middle">Rank</Col>
+                                <Col className="w10  mtn-col align-middle">Mountain</Col>
+                                <Col className="w8  mtn-col  align-middle">Elevation</Col>
+                                <Col className="w8  mtn-col  align-middle">Wind Direction</Col>
+                                <Col className="w8  mtn-col  align-middle">Wind Speed</Col>
+                                <Col className="w8  mtn-col  align-middle">Current Temp</Col>
+                                <Col className="w10  mtn-col  align-middle">Short Forecast</Col>
+                                {/* <th className="w6  mtn-col align-middle">Distance from You</Col> */}
+                                <Col className="w2  mtn-col  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
                             </Row>
 
 
@@ -56,29 +57,28 @@ class Mtns extends Component {
                       <h1 className="text-center">No Mountains to Display</h1>
                     ) : (
                       <>
-
                             <Row className="thead-hide">
                                 {/* <Col className="w2  h9 align-middle">Favorite</Col> */}
-                                <Col className="w2  align-middle">Rank</Col>
-                                <Col className="w10  align-middle">Mountain</Col>
-                                <Col className="w8  align-middle">Elevation</Col>
-                                <Col className="w8  align-middle">Wind Direction</Col>
-                                <Col className="w8  align-middle">Wind Speed</Col>
-                                <Col className="w8  align-middle">Current Temp</Col>
-                                <Col className="w10  align-middle">Short Forecast</Col>
-                                {/* <Col className="w6 align-middle">Distance from You</Col> */}
-                                <Col className="w2  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
+                                <Col className="w2  mtn-col  align-middle">Rank</Col>
+                                <Col className="w10  mtn-col  align-middle">Mountain</Col>
+                                <Col className="w8  mtn-col  align-middle">Elevation</Col>
+                                <Col className="w8  mtn-col  align-middle">Wind Direction</Col>
+                                <Col className="w8  mtn-col  align-middle">Wind Speed</Col>
+                                <Col className="w8  mtn-col  align-middle">Current Temp</Col>
+                                <Col className="w10  mtn-col  align-middle">Short Forecast</Col>
+                                {/* <Col className="w6 mtn-col  align-middle">Distance from You</Col> */}
+                                <Col className="w2  mtn-col  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
                             </Row>
 
-
-                      { this.state.mountains.map( mountain => {
-                        return (
-                                <Mtn
-                                    key={mountain.rank}
-                                    mountain={mountain}
-                                  />
-                                );
-                            }) }
+                            { this.state.mountains.map( mountain => {
+                                return (
+                                        <Mtn
+                                            key={mountain.rank}
+                                            mountain={mountain}
+                                        />
+                                        );
+                                }) 
+                            }
                             </>
                           )}
 
@@ -112,6 +112,7 @@ class Mtn extends Component {
   toggleRoutes = event => {
       console.log("toggleRoutes");
       event.preventDefault();
+      
   }
   windspeedColor() {
       //Conditional Formatting for Windspeed
@@ -160,34 +161,37 @@ class Mtn extends Component {
   render() {
     return (
 
-
+        <>
           <Row className="mtn-row">
-            <Col className="w2">
+            <Col className="w2 mtn-col ">
             { this.state.mountain.rank }
             </Col>
-            <Col className="w10">
+            <Col className="w10 mtn-col name">
             { this.state.mountain.peakName }
             </Col>
-            <Col className="w8">
+            <Col className="w8 mtn-col ">
               { this.state.mountain.elevation }
             </Col>
-            <Col className="w8 ">
+            <Col className="w8  mtn-col ">
               { this.state.weatherData.windDirection }
             </Col>
-            <StyledWindSpeed className="w8" bgcolor={this.windspeedColor()}>
+            <StyledWindSpeed className="w8 mtn-col " bgcolor={this.windspeedColor()}>
               { this.state.weatherData.windSpeed }
             </StyledWindSpeed>
-            <StyledTemp className="w8" bgcolor={this.getTempColor()}>
+            <StyledTemp className="w8 mtn-col " bgcolor={this.getTempColor()}>
               { this.state.weatherData.temperature + String.fromCharCode(176) + " " + this.state.weatherData.temperatureUnit }
             </StyledTemp>
-            <StyledCol className="w10" snowy={this.isSnowy()}>
+            <StyledCol className="w10 mtn-col " snowy={this.isSnowy()}>
               { this.state.weatherData.shortForecast }
             </StyledCol>
-            <Col className="w2" class="align-middle toggle-show-routes-btn"><i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>" className="fas fa-plus-square fa-minus-square fa-2x"></i></Col>
-            
+            <Col className="w2 mtn-col align-middle toggle-show-routes-btn"><i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>" className="fas fa-plus-square fa-minus-square fa-2x"></i></Col>
           </Row>
-
-
+          <Row className="routes">
+              <Col>
+                <Routes />
+              </Col>
+          </Row>
+        </>
     );
   }
 }
