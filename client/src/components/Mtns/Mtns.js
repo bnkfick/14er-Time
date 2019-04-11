@@ -3,6 +3,7 @@ import { Container, Row, Col } from 'reactstrap';
 import axios from "axios";
 import styled from 'styled-components';
 import "./style.css";
+import Mtn from "./Mtn";
 import API from "../../utils/API";
 
 class Mtns extends Component {

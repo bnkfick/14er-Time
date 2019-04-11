@@ -24,16 +24,6 @@ class About extends React.Component {
     console.log("this.state.aboutIsOpen " + this.state.aboutIsOpen);
   }
 
-  // closeAboutOrig() {
-  //   console.log("closing about");
-  //   document.getElementById('slider').classList.toggle('closed');
-  //   this.text = "Open";
-  // }
-
-  closeAbout = () => {
-    this.setState({ aboutIsOpen: false });
-  }
-
   render() {
     return (
 
@@ -49,9 +39,9 @@ class About extends React.Component {
             {/* {this.state.aboutIsOpen ?  <More></More> : ''} */}
             <More aboutIsOpen="this.state.aboutIsOpen" />
           </div>
-          <div id="#about-close" className="row mt-5">
+          <div id="#about-close" className="row mt-4">
             <div className="col center">
-              <button onClick={this.toggleAbout} type="button" className="btn btn-outline-light js-scroll-trigger btn-nav mb-5">
+              <button onClick={this.toggleAbout} type="button" className="btn btn-outline-light js-scroll-trigger btn-nav mb-4">
                 <span aria-hidden="true" >{this.state.aboutIsOpen ? 'Close' : 'More'}</span>
               </button>
             </div>

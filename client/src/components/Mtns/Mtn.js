@@ -2,16 +2,65 @@ import React, { Component } from "react";
 import { Container, Row, Col } from 'reactstrap';
 import axios from "axios";
 import styled from 'styled-components';
-import "./style.css";
+
+import Routes from "./Routes";
 import API from "../../utils/API";
 
+import "./style.css";
+import "./routes.css";
+
+const StyledCol = styled(Col)`
+    background-image: ${ props => props.snowy ? 'url("http://icons.iconarchive.com/icons/icons8/christmas-flat-color/256/snowflake-icon.png")' : ""};
+    background-size: 3em;
+    background-repeat: no-repeat;
+    background-position: center;
+`
+const StyledTemp = styled(Col)`
+    background-color: ${ props => props.bgcolor };
+`
+const StyledWindSpeed = styled(Col)`
+    background-color: ${ props => props.bgcolor };
+`
 
 class Mtn extends Component {
     state = {
       mountain: this.props.mountain,
-      weatherData:{}
-    };
-  
+      weatherData:{},
+      routesOpen: false,
+      cssClasses: [ "Routes", "RoutesClosed"],
+      cssPlusMinus: ["fas", "fa-plus-square", "fa-minus-square", "fa-2x"]
+      }
+
+      togglePlusMinus = () => {
+        if (this.state.routesOpen) {
+          this.setState({ 
+            cssPlusMinus: ["fas", "fa-minus-square", "fa-2x"]
+           });
+        } else {
+          this.setState({ 
+            routesOpen: true,
+            cssPlusMinus: ["fas", "fa-plus-square", "fa-minus-square", "fa-2x"]
+           });
+        }
+      }
+
+      toggleRoutes = () => {
+        this.togglePlusMinus();
+        if (this.state.routesOpen) {
+          this.setState({ 
+            routesOpen: false,
+            cssClasses: ["Routes", "RoutesClosed"]
+           });
+        } else {
+          this.setState({ 
+            routesOpen: true,
+            cssClasses: [ "Routes", "RoutesOpen"]
+           });
+        }
+        console.log("this.state.routesOpen " + this.state.routesOpen);
+        console.log(this.state.cssClasses);
+      }
+
     componentDidMount() {
       console.log("GETTING WEATHER IN componentDidMount");
       axios.get(this.state.mountain.weatherLink[0])
@@ -22,11 +71,6 @@ class Mtn extends Component {
       .catch(err => console.log(err));
     }
   
-    toggleRoutes = event => {
-        console.log("toggleRoutes");
-        event.preventDefault();
-        
-    }
     windspeedColor() {
         //Conditional Formatting for Windspeed
         var windSpeedString = this.state.weatherData.windSpeed;
@@ -97,15 +141,20 @@ class Mtn extends Component {
               <StyledCol className="w10 mtn-col " snowy={this.isSnowy()}>
                 { this.state.weatherData.shortForecast }
               </StyledCol>
-              <Col className="w2 mtn-col align-middle toggle-show-routes-btn"><i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>" className="fas fa-plus-square fa-minus-square fa-2x"></i></Col>
+              <Col className="w2 mtn-col align-middle toggle-show-routes-btn">
+              <i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>" 
+                  className={this.state.cssPlusMinus.join(' ')}></i></Col>
             </Row>
-            <Row className="routes">
+            <Row>
                 <Col>
-                      <Routes />
+                    <div className={this.state.cssClasses.join(' ')}>
+                        <Routes />
+                    </div>
                 </Col>
             </Row>
           </>
       );
     }
   }
+  export default Mtn;
   
