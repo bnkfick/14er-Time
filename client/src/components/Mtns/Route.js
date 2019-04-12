@@ -1,13 +1,16 @@
 import React from "react";
 import { Row, Col } from "reactstrap";
+
+import RouteDetail from "./RouteDetail";
 import "./routes.css";
 
 
 class Route extends React.Component {
     state = {
         trail: this.props.trail,
+        towns: this.props.towns,
         routeIsOpen: false,
-        cssClasses: ["Route"]
+        cssClasses: ["Route", "route-detail"]
     }
 
     
@@ -15,12 +18,12 @@ class Route extends React.Component {
         if (this.state.routeIsOpen) {
             this.setState({
                 routeIsOpen: false,
-                cssClasses: ["Route", "RouteClosed"]
+                cssClasses: ["Route", "route-detail", "RouteClosed"]
             });
         } else {
             this.setState({
                 routeIsOpen: true,
-                cssClasses: ["Route", "RouteOpen"]
+                cssClasses: ["Route", "route-detail", "RouteOpen"]
             });
         }
         console.log("this.state.routeIsOpen " + this.state.routeIsOpen);
@@ -77,7 +80,7 @@ class Route extends React.Component {
                     <Col md="2" className="toggle-show-route-beta-btn"><i onClick={this.toggleRoute} className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
                 </Row>
                 <Row className={this.state.cssClasses.join(' ')}>
-                          Map ans Stuff
+                          <RouteDetail trail={this.state.trail} towns={this.state.towns}/>
                 </Row>
             </>
         );

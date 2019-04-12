@@ -143,6 +143,7 @@ class Mtn extends Component {
                         <div className={this.state.cssClasses.join(' ')}>
                             <Routes
                                 key={this.state.mountain.name}
+                                towns={this.state.mountain.towns}
                                 trails={this.state.mountain.trails}
                             />
                         </div>

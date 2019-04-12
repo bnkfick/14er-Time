@@ -5,7 +5,8 @@ import "./routes.css";
 
 class Routes extends Component {
     state = {
-        trails: this.props.trails
+        trails: this.props.trails,
+        towns: this.props.towns
     };
 
     componentDidMount() {
@@ -28,6 +29,7 @@ class Routes extends Component {
                         <Route
                             key={trail.name}
                             trail={trail}
+                            towns={this.state.towns}
                         />
                     );
                 })
