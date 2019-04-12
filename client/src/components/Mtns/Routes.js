@@ -14,25 +14,25 @@ class Routes extends Component {
 
     render() {
         return (
-            <div className="routes-section">
-                <Row className="thead-hide">
-                    <Col className="w20">Route Name</Col>
-                    <Col className="w2">Mileage</Col>
-                    <Col className="w2">Gain (ft.)</Col>
-                    <Col className="w2">Difficulty</Col>
-                    <Col className="w2">Fall Exposure</Col>
-                    <Col className="w2">Route Beta</Col>
+            <>
+                <Row className="routes-header routes-row">
+                    <Col md="4">Route Name</Col>
+                    <Col md="1">Mileage</Col>
+                    <Col md="1">Gain (ft.)</Col>
+                    <Col md="1">Difficulty</Col>
+                    <Col md="3">Fall Exposure</Col>
+                    <Col md="2">Route Beta</Col>
                 </Row>
                 { this.state.trails.map(trail => {
                     return (
                         <Route
                             key={trail.name}
-                            name={trail.name}
+                            trail={trail}
                         />
                     );
                 })
                 } 
-            </div>
+            </>
         );
     }
 }

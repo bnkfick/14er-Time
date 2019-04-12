@@ -15,13 +15,14 @@ body {
 .whitesmoke {
     color: whitesmoke;
 }
-/* Backgrounds */
+
+
 .glass {
     /* width: 100%; */
     background-color: rgba(19, 18, 18, 0.671);
     backdrop-filter: blur(5px);   
     -webkit-backdrop-filter: blur(5px);  
-    padding: 0 1em 0 1em;
+    /* padding: 0 1em 0 1em; */
     /* color: whitesmoke; */
 }
 

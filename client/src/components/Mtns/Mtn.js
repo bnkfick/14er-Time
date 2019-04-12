@@ -145,16 +145,14 @@ class Mtn extends Component {
                         <i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>"
                             className={this.state.cssPlusMinus.join(' ')}></i></Col>
                 </Row>
-                <Row>
-                    <Col>
+
                         <div className={this.state.cssClasses.join(' ')}>
                             <Routes
                                 key={this.state.mountain.name}
                                 trails={this.state.mountain.trails}
                             />
                         </div>
-                    </Col>
-                </Row>
+
             </>
         );
     }
