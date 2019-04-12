@@ -26,8 +26,7 @@ class Route extends React.Component {
     }
 
     styleDifficulty() {
-
-
+        
         if (this.state.trail.difficulty === 4) {
             return (
                 <><i className="fas fa-mountain fa-2x"></i><i className="fas fa-mountain fa-2x"></i></>);
@@ -41,22 +40,38 @@ class Route extends React.Component {
             return (
                 <><i className="fas fa-circle fa-2x"></i></>);
         }
-
     }
 
-    render() { 
+    styleExposure() {
+
+
+        if (this.state.trail.exposure === 4) {
+            return (<><div className="bg-danger progress-bar progress-bar-striped progress-bar-animated" 
+            role="progressbar" style={{width: 100 + '%'}}>EXTREME</div></>);
+        } else if (this.state.trail.exposure === 3) {
+            return (<><div className="bg-warning progress-bar progress-bar-striped progress-bar-animated" 
+            role="progressbar" style={{width: 75 + '%'}}>HIGH</div></>);
+        } else if (this.state.trail.exposure === 2) {
+            return (<><div className="progress-bar progress-bar-striped progress-bar-animated" 
+            role="progressbar" style={{width: 50 + '%'}}>MODERATE</div></>);
+        } else {
+            return (<><div className="bg-success progress-bar progress-bar-striped progress-bar-animated"  
+            role="progressbar" style={{width: 25 + '%'}}>LOW</div></>);
+        }
+       
+    };
+
+    render() {
         return (
-        <>
-            <Row className="routes-row">
-                <Col md="4" className="route-name ">{this.state.trail.name}</Col>
-                <Col md="1" className="route-mileage ">{this.state.trail.mileage}</Col>
-                <Col md="1" className="route-gain ">{this.state.trail.gain}</Col>
-                <Col md="1" className="route-difficulty ">{this.styleDifficulty()}</Col>
-                <Col md="3" className="route-exposure ">
-                    progress bar for exposure
-                    </Col>
-                <Col md="2" className="toggle-show-route-beta-btn"><i className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
-            </Row>
+            <>
+                <Row className="routes-row">
+                    <Col md="4" className="route-name ">{this.state.trail.name}</Col>
+                    <Col md="1" className="route-mileage ">{this.state.trail.mileage}</Col>
+                    <Col md="1" className="route-gain ">{this.state.trail.gain}</Col>
+                    <Col md="1" className="route-difficulty">{this.styleDifficulty()}</Col>
+                    <Col md="3" className="route-exposure"><div className="progress align-middle" style={{height:2.5 +'em'}}>{this.styleExposure()}</div></Col>
+                    <Col md="2" className="toggle-show-route-beta-btn"><i className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
+                </Row>
             </>
         );
     }
