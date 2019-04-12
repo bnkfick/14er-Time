@@ -15,6 +15,10 @@ tbody {
 #table-list {
     padding: 0;
 }
+.fa-spinner {
+    font-size: 180px;
+    color:whitesmoke;
+}
 
 .mtn-header {
     background-color: #333;

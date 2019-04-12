@@ -7,7 +7,7 @@ class Route extends React.Component {
     state = {
         trail: this.props.trail,
         routeIsOpen: true,
-        cssClasses: ["More", "MoreOpen"]
+        cssClasses: ["Route", "RouteOpen"]
     }
 
     toggleRoute = () => {
@@ -47,16 +47,19 @@ class Route extends React.Component {
 
         if (this.state.trail.exposure === 4) {
             return (<><div className="bg-danger progress-bar progress-bar-striped progress-bar-animated" 
-            role="progressbar" style={{width: 100 + '%'}}>EXTREME</div></>);
+            role="progressbar" aria-valuenow="100"
+  aria-valuemin="0" aria-valuemax="100" style={{width: 100 + '%'}}>EXTREME</div></>);
         } else if (this.state.trail.exposure === 3) {
             return (<><div className="bg-warning progress-bar progress-bar-striped progress-bar-animated" 
-            role="progressbar" style={{width: 75 + '%'}}>HIGH</div></>);
+            role="progressbar" aria-valuenow="75"
+  aria-valuemin="0" aria-valuemax="100" style={{width: 75 + '%'}}>HIGH</div></>);
         } else if (this.state.trail.exposure === 2) {
             return (<><div className="progress-bar progress-bar-striped progress-bar-animated" 
-            role="progressbar" style={{width: 50 + '%'}}>MODERATE</div></>);
+            role="progressbar" aria-valuenow="50"
+  aria-valuemin="0" aria-valuemax="100" style={{width: 50 + '%'}}>MODERATE</div></>);
         } else {
             return (<><div className="bg-success progress-bar progress-bar-striped progress-bar-animated"  
-            role="progressbar" style={{width: 25 + '%'}}>LOW</div></>);
+            role="progressbar" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100" style={{width: 25 + '%'}}>LOW</div></>);
         }
        
     };
