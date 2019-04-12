@@ -29,8 +29,8 @@ class About extends React.Component {
         <div className="partial-header">
           <div className="intro">
             <h2 className="spec-text">
-              Your Hub for 14'er Info <br /> Weather Alerts, Driving Directions
-            <br /> & Friend Connections!
+              Your Hub for 14'er Info <br /> Weather, Maps
+            <br /> &amp; Friend Connections!
           </h2>
           </div>
           <div className={this.state.cssClasses.join(' ')}>
