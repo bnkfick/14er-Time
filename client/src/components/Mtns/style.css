@@ -18,25 +18,29 @@ tbody {
 
 .mtn-header {
     background-color: #333;
-    height: 7rem;
+
     color: whitesmoke;
     border-top: 1px solid whitesmoke;
 }
 
 .mtn-row {
-    height: 7rem;
+    font-family: 'Poppins', sans-serif;
+
     background-color: transparent;
     background: transparent;
     color: whitesmoke;
     border-top: 1px solid whitesmoke;
 }
 
+
 .mtn-col {
     font-weight: bold;
-    font-size: 1em;
+    font-size: 1.1em;
     color: whitesmoke;
     text-align: center;
     padding-top: 2.3em;
+    padding-bottom: 2em;
+
 }
 
 .name {

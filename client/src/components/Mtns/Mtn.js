@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Container, Row, Col } from 'reactstrap';
+import { Row, Col } from 'reactstrap';
 import axios from "axios";
 import styled from 'styled-components';
 
@@ -35,11 +35,12 @@ class Mtn extends Component {
         cssPlusMinus: ["fas", "fa-plus-square", "fa-minus-square", "fa-2x"]
     }
 
+    //move to the server side if protected api key is used
     componentDidMount() {
-        console.log("GETTING MOUNTAIN ROUTES IN componentDidMount");
-        API.getMtns()
-            .then(res => {
-                this.setState({ mountains: res.data })
+        API.getWeather(this.state.mountain.weatherLink[0])
+            .then(response => {
+                //console.log(response.data.properties.periods[0]);
+                this.setState({ weatherData: response.data.properties.periods[0] });
             })
             .catch(err => console.log(err));
     }
@@ -60,16 +61,6 @@ class Mtn extends Component {
         }
         console.log("this.state.routesOpen " + this.state.routesOpen);
         console.log(this.state.cssClasses);
-    }
-
-    componentDidMount() {
-        console.log("GETTING WEATHER IN componentDidMount");
-        axios.get(this.state.mountain.weatherLink[0])
-            .then(response => {
-                console.log(response.data.properties.periods[0]);
-                this.setState({ weatherData: response.data.properties.periods[0] });
-            })
-            .catch(err => console.log(err));
     }
 
     windspeedColor() {
@@ -120,28 +111,31 @@ class Mtn extends Component {
         return (
             <>
                 <Row className="mtn-row">
-                    <Col className="w2 mtn-col ">
+                    <Col md="1" className="mtn-col ">
+                        
+                    </Col>
+                    <Col md="1" className="mtn-col ">
                         {this.state.mountain.rank}
                     </Col>
-                    <Col className="w10 mtn-col name">
+                    <Col md="2" className="mtn-col name">
                         {this.state.mountain.peakName}
                     </Col>
-                    <Col className="w8 mtn-col ">
+                    <Col md="1" className="mtn-col ">
                         {this.state.mountain.elevation}
                     </Col>
-                    <Col className="w8  mtn-col ">
+                    <Col md="1" className="mtn-col ">
                         {this.state.weatherData.windDirection}
                     </Col>
-                    <StyledWindSpeed className="w8 mtn-col " bgcolor={this.windspeedColor()}>
+                    <StyledWindSpeed md="1" className="mtn-col " bgcolor={this.windspeedColor()}>
                         {this.state.weatherData.windSpeed}
                     </StyledWindSpeed>
-                    <StyledTemp className="w8 mtn-col " bgcolor={this.getTempColor()}>
+                    <StyledTemp md="1" className="mtn-col " bgcolor={this.getTempColor()}>
                         {this.state.weatherData.temperature + String.fromCharCode(176) + " " + this.state.weatherData.temperatureUnit}
                     </StyledTemp>
-                    <StyledCol className="w10 mtn-col " snowy={this.isSnowy()}>
+                    <StyledCol md="3" className="mtn-col " snowy={this.isSnowy()}>
                         {this.state.weatherData.shortForecast}
                     </StyledCol>
-                    <Col className="w2 mtn-col">
+                    <Col md="1" className="mtn-col">
                         <i onClick={this.toggleRoutes} role="button" id="<%=mtn.id%>"
                             className={this.state.cssPlusMinus.join(' ')}></i></Col>
                 </Row>

@@ -1,16 +1,16 @@
-.Modal {
+.More {
     transition: all 0.5s ease-out;
 }
 
-.ModalOpen {
-    animation: openModal 0.6s ease-out forwards;
+.MoreOpen {
+    animation: openMore 0.6s ease-out forwards;
 }
 
-.ModalClosed {
-    animation: closeModal 0.6s ease-out forwards;
+.MoreClosed {
+    animation: closeMore 0.6s ease-out forwards;
 }
 
-@keyframes openModal {
+@keyframes openMore {
     0% {
         opacity: 0;
         max-height: 0;
@@ -28,7 +28,7 @@
     }
 }
 
-@keyframes closeModal {
+@keyframes closeMore {
     0% {
         opacity: 1;
         max-height: 500px;

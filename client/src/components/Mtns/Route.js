@@ -3,43 +3,63 @@ import { Row, Col } from "reactstrap";
 import "./routes.css";
 
 
+class Route extends React.Component {
+    state = {
+        trail: this.props.trail,
+        routeIsOpen: true,
+        cssClasses: ["More", "MoreOpen"]
+    }
 
-const Route = props => {
+    toggleRoute = () => {
+        if (this.state.routeIsOpen) {
+            this.setState({
+                aboutIsOpen: false,
+                cssClasses: ["More", "MoreClosed"]
+            });
+        } else {
+            this.setState({
+                routeIsOpen: true,
+                cssClasses: ["More", "MoreOpen"]
+            });
+        }
+        console.log("this.state.aboutIsOpen " + this.state.aboutIsOpen);
+    }
 
-    function styleDifficulty() {
+    styleDifficulty() {
 
 
-        if (props.trail.difficulty === 4) {
+        if (this.state.trail.difficulty === 4) {
             return (
-                <><i class="fas fa-mountain fa-2x"></i><i class="fas fa-mountain fa-2x"></i></>);
-        } else if (props.trail.difficulty  === 3) {
+                <><i className="fas fa-mountain fa-2x"></i><i className="fas fa-mountain fa-2x"></i></>);
+        } else if (this.state.trail.difficulty === 3) {
             return (
-                <><i class="fas fa-mountain fa-2x"></i></>);
-        } else if (props.trail.difficulty  === 2) {
+                <><i className="fas fa-mountain fa-2x"></i></>);
+        } else if (this.state.trail.difficulty === 2) {
             return (
-                <><i class="fas fa-square fa-2x"></i></>);
+                <><i className="fas fa-square fa-2x"></i></>);
         } else {
             return (
-                <><i class="fas fa-circle fa-2x"></i></>);
+                <><i className="fas fa-circle fa-2x"></i></>);
         }
 
-    } 
+    }
 
-    return (
+    render() { 
+        return (
         <>
-        
             <Row className="routes-row">
-                <Col md="4" className="route-name ">{props.trail.name}</Col>
-                <Col md="1" className="route-mileage ">{props.trail.mileage}</Col>
-                <Col md="1" className="route-gain ">{props.trail.gain}</Col>
-                <Col md="1" className="route-difficulty ">{styleDifficulty()}</Col>
-                <Col md="3"className="route-exposure ">
+                <Col md="4" className="route-name ">{this.state.trail.name}</Col>
+                <Col md="1" className="route-mileage ">{this.state.trail.mileage}</Col>
+                <Col md="1" className="route-gain ">{this.state.trail.gain}</Col>
+                <Col md="1" className="route-difficulty ">{this.styleDifficulty()}</Col>
+                <Col md="3" className="route-exposure ">
                     progress bar for exposure
-                </Col>
+                    </Col>
                 <Col md="2" className="toggle-show-route-beta-btn"><i className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
             </Row>
-        </>
-    );
-};
+            </>
+        );
+    }
+}
 
 export default Route;

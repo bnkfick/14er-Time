@@ -15,10 +15,10 @@ class Routes extends Component {
     render() {
         return (
             <>
-                <Row className="routes-header routes-row">
+                <Row className="routes-header ">
                     <Col md="4">Route Name</Col>
                     <Col md="1">Mileage</Col>
-                    <Col md="1">Gain (ft.)</Col>
+                    <Col md="1">Gain ft.</Col>
                     <Col md="1">Difficulty</Col>
                     <Col md="3">Fall Exposure</Col>
                     <Col md="2">Route Beta</Col>

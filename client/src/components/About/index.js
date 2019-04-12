@@ -1,35 +1,28 @@
 import React from "react";
-import { Alert, Col } from 'reactstrap';
-import styled from 'styled-components';
 import More from "./More";
 import "./styles.css";
 
 class About extends React.Component {
   state = {
     aboutIsOpen: true,
-    cssClasses: [ "Modal", "ModalOpen"]
+    cssClasses: [ "More", "MoreOpen"]
   }
   
   toggleAbout = () => {
     if (this.state.aboutIsOpen) {
       this.setState({ 
         aboutIsOpen: false,
-        cssClasses: ["Modal", "ModalClosed"]
+        cssClasses: ["More", "MoreClosed"]
        });
     } else {
       this.setState({ aboutIsOpen: true,
-        cssClasses: [ "Modal", "ModalOpen"]
+        cssClasses: [ "More", "MoreOpen"]
        });
     }
     console.log("this.state.aboutIsOpen " + this.state.aboutIsOpen);
   }
 
   render() {
-    let toggler = 'Close';
-    if (!this.state.aboutIsOpen) {
-      toggler = '<i className="fas fa-plus-square fa-2x"></i>';
-    }
-
                
     return (
       <>
