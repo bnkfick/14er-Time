@@ -25,8 +25,13 @@ class About extends React.Component {
   }
 
   render() {
-    return (
+    let toggler = 'Close';
+    if (!this.state.aboutIsOpen) {
+      toggler = '<i className="fas fa-plus-square fa-2x"></i>';
+    }
 
+               
+    return (
       <>
         <div className="partial-header">
           <div className="intro">
@@ -41,9 +46,11 @@ class About extends React.Component {
           </div>
           <div id="#about-close" className="row mt-4">
             <div className="col center">
-              <button onClick={this.toggleAbout} type="button" className="btn btn-outline-light js-scroll-trigger btn-nav mb-4">
-                <span aria-hidden="true" >{this.state.aboutIsOpen ? 'Close' : 'More'}</span>
-              </button>
+             
+              {!this.state.aboutIsOpen ? 
+              <i onClick={this.toggleAbout} className="whitesmoke  mb-4 fas fa-plus-square fa-2x"></i> :
+              <button onClick={this.toggleAbout} type="button" className="btn btn-outline-light js-scroll-trigger btn-nav mb-4"><span aria-hidden="true">Close</span></button>}
+              
             </div>
           </div>
         </div>

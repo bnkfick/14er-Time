@@ -26,17 +26,17 @@ class Mtns extends Component {
             <>
                 <Container className="glass">
 
-                            <Row className="mtn-row">
-                                {/* <Col className="w2  mtn-col  h9 align-middle">Favorite</Col> */}
-                                <Col className="w2  mtn-col align-middle">Rank</Col>
-                                <Col className="w10  mtn-col align-middle">Mountain</Col>
-                                <Col className="w8  mtn-col  align-middle">Elevation</Col>
-                                <Col className="w8  mtn-col  align-middle">Wind Direction</Col>
-                                <Col className="w8  mtn-col  align-middle">Wind Speed</Col>
-                                <Col className="w8  mtn-col  align-middle">Current Temp</Col>
-                                <Col className="w10  mtn-col  align-middle">Short Forecast</Col>
-                                {/* <th className="w6  mtn-col align-middle">Distance from You</Col> */}
-                                <Col className="w2  mtn-col  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
+                            <Row className="mtn-header">
+                                {/* <Col className="w2  mtn-col  h9 ">Favorite</Col> */}
+                                <Col className="w2  mtn-col ">Rank</Col>
+                                <Col className="w10  mtn-col ">Mountain</Col>
+                                <Col className="w8  mtn-col  ">Elevation</Col>
+                                <Col className="w8  mtn-col  ">Wind Direction</Col>
+                                <Col className="w8  mtn-col  ">Wind Speed</Col>
+                                <Col className="w8  mtn-col  ">Current Temp</Col>
+                                <Col className="w10  mtn-col  ">Short Forecast</Col>
+                                {/* <th className="w6  mtn-col ">Distance from You</Col> */}
+                                <Col className="w2  mtn-col  "><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
                             </Row>
 
 
@@ -45,16 +45,16 @@ class Mtns extends Component {
                     ) : (
                       <>
                             <Row className="thead-hide">
-                                {/* <Col className="w2  h9 align-middle">Favorite</Col> */}
-                                <Col className="w2  mtn-col  align-middle">Rank</Col>
-                                <Col className="w10  mtn-col  align-middle">Mountain</Col>
-                                <Col className="w8  mtn-col  align-middle">Elevation</Col>
-                                <Col className="w8  mtn-col  align-middle">Wind Direction</Col>
-                                <Col className="w8  mtn-col  align-middle">Wind Speed</Col>
-                                <Col className="w8  mtn-col  align-middle">Current Temp</Col>
-                                <Col className="w10  mtn-col  align-middle">Short Forecast</Col>
-                                {/* <Col className="w6 mtn-col  align-middle">Distance from You</Col> */}
-                                <Col className="w2  mtn-col  align-middle"><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
+                                {/* <Col className="w2  h9 ">Favorite</Col> */}
+                                <Col className="w2  mtn-col  ">Rank</Col>
+                                <Col className="w10  mtn-col  ">Mountain</Col>
+                                <Col className="w8  mtn-col  ">Elevation</Col>
+                                <Col className="w8  mtn-col  ">Wind Direction</Col>
+                                <Col className="w8  mtn-col  ">Wind Speed</Col>
+                                <Col className="w8  mtn-col  ">Current Temp</Col>
+                                <Col className="w10  mtn-col  ">Short Forecast</Col>
+                                {/* <Col className="w6 mtn-col  ">Distance from You</Col> */}
+                                <Col className="w2  mtn-col  "><i className="fas fa-plus-square fa-minus-square fa-2x ghost"></i></Col>
                             </Row>
 
                             { this.state.mountains.map( mountain => {

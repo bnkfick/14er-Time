@@ -1,5 +1,8 @@
 .Routes {
     transition: all 0.5s ease-out;
+    opacity: 0;
+    max-height: 0;
+    border-top: 1px solid whitesmoke;
 }
 
 .RoutesOpen {
@@ -18,8 +21,8 @@
     }
     50% {
         opacity: .8;
-        max-height: 250px;
-        transform: translateY(15%);
+        max-height: 50px;
+        transform: translateY(0);
     }
     100% {
         opacity: 1;
@@ -36,12 +39,22 @@
     }
     50% {
         opacity: .8;
-        max-height: 250px;
-        transform: translateY(15%);
+        max-height: 50px;
+        transform: translateY(0);
     }
     100% {
         opacity: 0;
         max-height: 0;
         transform: translateY(-100%);
     }
+}
+
+.route-info {
+    background-color: black;
+    color: black;
+    border-bottom: 1px solid whitesmoke;
+}
+
+.routes-section {
+    background-color: white;
 }

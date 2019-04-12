@@ -16,34 +16,35 @@ tbody {
     padding: 0;
 }
 
+.mtn-header {
+    background-color: #333;
+    height: 7rem;
+    color: whitesmoke;
+    border-top: 1px solid whitesmoke;
+}
+
 .mtn-row {
     height: 7rem;
     background-color: transparent;
     background: transparent;
     color: whitesmoke;
+    border-top: 1px solid whitesmoke;
 }
 
 .mtn-col {
     font-weight: bold;
     font-size: 1em;
-    border: 1px solid whitesmoke;
     color: whitesmoke;
     text-align: center;
+    padding-top: 2.3em;
 }
 
 .name {
     font-weight: bolder;
     font-size: 1.2em;
+    padding-top: 2em;
 }
-.routes {
-    max-height: 0;
-    opacity: 0;
-    overflow: hidden;
-    transition: max-height 0.4s ease 0s;
 
-
-    
-}
 
 
 .mh0 {
@@ -56,7 +57,7 @@ tbody {
     padding: 0 !important;
 }
 
-.ghost{
+.ghost, .ghost:hover {
     color: transparent;
 }
 
