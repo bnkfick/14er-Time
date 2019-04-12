@@ -1,14 +1,14 @@
-.Routes {
+.Routes, .Route {
     transition: all 0.5s ease-out;
     opacity: 0;
     max-height: 0;
 }
 
-.RoutesOpen {
+.RoutesOpen, .RouteOpen {
     animation: openRoutes 0.4s ease-out forwards;
 }
 
-.RoutesClosed {
+.RoutesClosed, .RouteClosed {
     animation: closeRoutes 0.4s ease-out forwards;
 }
 

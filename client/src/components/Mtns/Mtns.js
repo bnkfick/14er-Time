@@ -21,7 +21,7 @@ class Mtns extends Component {
 
   render() {
     if (!this.state.mountains || this.state.mountains.length < 1) {
-      return <div className="center"><i class="fas fa-spinner fa-spin 7x" aria-hidden="true"></i></div>
+      return <div className="center"><i className="fas fa-spinner fa-spin 7x" aria-hidden="true"></i></div>
     }
 
     return (

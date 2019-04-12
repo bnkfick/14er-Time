@@ -6,23 +6,24 @@ import "./routes.css";
 class Route extends React.Component {
     state = {
         trail: this.props.trail,
-        routeIsOpen: true,
-        cssClasses: ["Route", "RouteOpen"]
+        routeIsOpen: false,
+        cssClasses: ["Route"]
     }
 
+    
     toggleRoute = () => {
         if (this.state.routeIsOpen) {
             this.setState({
-                aboutIsOpen: false,
-                cssClasses: ["More", "MoreClosed"]
+                routeIsOpen: false,
+                cssClasses: ["Route", "RouteClosed"]
             });
         } else {
             this.setState({
                 routeIsOpen: true,
-                cssClasses: ["More", "MoreOpen"]
+                cssClasses: ["Route", "RouteOpen"]
             });
         }
-        console.log("this.state.aboutIsOpen " + this.state.aboutIsOpen);
+        console.log("this.state.routeIsOpen " + this.state.routeIsOpen);
     }
 
     styleDifficulty() {
@@ -73,7 +74,10 @@ class Route extends React.Component {
                     <Col md="1" className="route-gain ">{this.state.trail.gain}</Col>
                     <Col md="1" className="route-difficulty">{this.styleDifficulty()}</Col>
                     <Col md="3" className="route-exposure"><div className="progress align-middle" style={{height:2.5 +'em'}}>{this.styleExposure()}</div></Col>
-                    <Col md="2" className="toggle-show-route-beta-btn"><i className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
+                    <Col md="2" className="toggle-show-route-beta-btn"><i onClick={this.toggleRoute} className="fas fa-map-marked-alt fa-map-marked fa-2x"></i></Col>
+                </Row>
+                <Row className={this.state.cssClasses.join(' ')}>
+                          Map ans Stuff
                 </Row>
             </>
         );
