@@ -128,7 +128,7 @@ export default class Slider extends React.Component {
         </div>
        
         <input type="range" min={this.props.min} max={this.props.max} value={this.state.value} className="slider" onChange={this.handleOnChange} />
-        <div className="value">{this.state.value} &#176;F</div>
+        <div className="value">{this.state.value} {this.props.units}</div>
       </Styles>
     )
   }

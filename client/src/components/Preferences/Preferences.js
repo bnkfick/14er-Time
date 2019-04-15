@@ -43,15 +43,9 @@ export default class Preferences extends Component {
                         </div>
                     </div>
                     <Collapse isOpen={this.state.collapse}>
-                        <div id="preference-box" className="mt-5">
-                            <form>
-                                <div className="form-group question-template question">
-                                    <div className="row">
-                                        <div className="col-2 label-box">
-                                            <label>Minimum Temperature</label>
-                                        </div>
 
-                                        <div className="slider slider-horizontal" id="">
+
+                                        {/* <div className="slider slider-horizontal" id="">
                                             <div className="slider-track">
                                                 <div className="slider-track-low" style={{left: 0 + 'px', width: 0 + '%'}}></div>
                                                 <div className="slider-selection tick-slider-selection" style={{left: 0 + '%', width: 0 + '%'}}></div>
@@ -81,64 +75,13 @@ export default class Preferences extends Component {
                                                 <div className="slider-tick" style={{left: 87.5 + '%'}}></div>
                                                 <div className="slider-tick" style={{left: 100 + '%'}}></div>
                                             </div>
-                                        </div>
+                                        </div> */}
 
+                                <Slider min="-20" max="60" label="Minimum Temperature" units="&#176;F"/>
+                                <Slider min="0" max="60" label="Max Wind Speeds" units="mph"/>
+                                <Slider min="0" max="400" label="Max Distance" units="mi"/>
+                                <Slider min="-20" max="60" label="Max Chance of Precipitation" units="%"/>
 
-
-
-
-
-                                        <div id="min-temp-box" className="col-8 text-center input-box">
-                                            <input id="min-temp-slider" className="custom-slider" type="text" />
-                                        </div>
-                                        <div className="col-2 text-center readout-box">
-                                            <span className="readout">-20</span> &#176;F
-                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group question-template question">
-                                    <div className="row">
-                                        <div className="col-2 label-box">
-                                            <label>Max Wind Speeds</label>
-                                        </div>
-                                        <div id="max-wind-box" className="col-8 text-center input-box">
-                                            <input id="max-wind-slider" className="custom-slider" type="text" />
-                                        </div>
-                                        <div className="col-2 text-center readout-box">
-                                            <span className="readout">0</span> mph
-                        </div>
-                                    </div>
-                                </div>
-                                <div className="form-group question-template question">
-                                    <div className="row">
-                                        <div className="col-2 label-box">
-                                            <label>Max Chance of Precipitation</label>
-                                        </div>
-                                        <div id="max-precip-box" className="col-8 text-center input-box">
-                                            <input id="max-precip-slider" className="custom-slider" type="text" />
-                                        </div>
-                                        <div className="col-2 text-center readout-box">
-                                            <span className="readout">0</span> %
-                        </div>
-                                    </div>
-                                </div>
-
-                                <Slider min="-20" min="60" label="Minimum Temperature"/>
-                                <div className="form-group question-template question">
-                                    <div className="row">
-                                        <div className="col-2 label-box">
-                                            <label>Max Distance</label>
-                                        </div>
-                                        <div id="max-dist-box" className="col-8 text-center input-box">
-                                            <input id="max-dist-slider" className="custom-slider" type="text" />
-                                        </div>
-                                        <div className="col-2 text-center readout-box">
-                                            <span className="readout">0</span> mi
-                        </div>
-                                    </div>
-                                </div>
-                            </form>
-                        </div>
                     </Collapse>
                 </div>
 
