@@ -8,13 +8,14 @@ class RouteDetail extends React.Component {
         trail: this.props.trail,
         towns: this.props.towns
     }
+    
 
     render() {
         return (
             <>
                     <Col md="12" lg="7" className="mt-3">
 
-                            <iframe class="trailmap" frameborder="0" src={this.state.trail.mapEmbed}></iframe>
+                            <iframe className="trailmap" frameBorder="0" src={this.state.trail.mapEmbed}></iframe>
 
                     </Col>
                     <Col md="12" lg="5" className="mt-3">
