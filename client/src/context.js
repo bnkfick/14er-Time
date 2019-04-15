@@ -87,7 +87,7 @@ class UserProvider extends Component {
             API.isLoggedIn().then(user => {
                 console.log("isLoggedIn C");
                 if(user.data.loggedIn) {
-                    console.log("isLoggedIn if");
+                    console.log(user.data);
                     this.setState({
                         loggedIn: true,
                         user: user.data.user

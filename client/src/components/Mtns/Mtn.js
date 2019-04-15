@@ -112,7 +112,7 @@ class Mtn extends Component {
             <>
                 <Row className="mtn-row">
                     <Col md="1" className="mtn-col ">
-                        
+                        {this.props.isLoggedIn ? <i value="false" class="favorite far fa-heart fa-2x"></i> : ''}
                     </Col>
                     <Col md="1" className="mtn-col ">
                         {this.state.mountain.rank}

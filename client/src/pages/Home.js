@@ -9,6 +9,9 @@ class Home extends Component {
     loggedIn: false
   };
 
+  componentDidMount () {
+    console.log(this.props);
+  }
 
   render() {
     return (
@@ -18,7 +21,7 @@ class Home extends Component {
       { this.state.loggedIn ? <Preferences /> : ""}
       <Preferences />
       <p></p>
-      <Mtns></Mtns>
+      <Mtns isLoggedIn={this.state.loggedIn}></Mtns>
 
       </>
     );

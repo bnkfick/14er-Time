@@ -4,33 +4,9 @@ import { UserConsumer } from "../../context";
 import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
-import API from "../../utils/API";
 
-class Profile extends Component {
-  state = {
-    loggedIn: false,
-    user: {}
-  };
-
-  componentDidMount() {
-
-    API.isLoggedIn().then(user => {
-        if (user.data.loggedIn) {
-            this.setState({
-                loggedIn: true,
-                user: user.data.user
-            });
-        }
-        console.log(this.state.user);
-    }).catch(err => {
-        console.log(err);
-    });
-
-    // console.log(this.props)
-}
-
-render() {
-  return (
+  function Profile(props) {
+    return (
 
     <UserConsumer>
       {({ data, logout }) => (
@@ -63,15 +39,15 @@ render() {
                     
                     <div className="col-md-6">
                         <div className="form-group row">
-                            <label for="fname-input" className="col-4 col-form-label">First Name:</label>
+                            <label htmlFor="fname-input" className="col-4 col-form-label">First Name:</label>
                             <div className="col-8">
-                                <input id="fname-input" value={this.state.user.firstname} type="text" className="form-control" />
+                                <input id="fname-input" value={data.user.firstname} type="text" className="form-control" />
                             </div>
                         </div>
                         <div className="form-group row">
-                            <label for="lname-input" className="col-4 col-form-label">Last Name:</label>
+                            <label htmlFor="lname-input" className="col-4 col-form-label">Last Name:</label>
                             <div className="col-8">
-                                <input id="lname-input"  value={this.state.user.lastname} type="text" className="form-control" />
+                                <input id="lname-input"  value={data.user.lastname} type="text" className="form-control" />
                             </div>
                         </div>
                         <div className="form-group row">
@@ -128,5 +104,5 @@ render() {
     </UserConsumer>
   );
 }
-}
+
 export default Profile;
