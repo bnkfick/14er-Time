@@ -20,7 +20,7 @@ class Mtns extends Component {
   }
 
   render() {
-    if (!this.state.mountains || this.state.mountains.length < 1) {
+    if ( this.state.mountains.length < 1 ) {
       return <div className="center"><i className="fas fa-spinner fa-spin 7x" aria-hidden="true"></i></div>
     }
 
@@ -28,7 +28,7 @@ class Mtns extends Component {
       <>
         <Container className="glass">
 
-          <Row className="mtn-header mtn-row">
+          <Row className="mtn-header">
             <Col md="1" className="mtn-col"></Col>
             <Col md="1" className="mtn-col">Rank</Col>
             <Col md="2" className="mtn-col">Mountain</Col>
@@ -42,7 +42,7 @@ class Mtns extends Component {
           </Row>
 
 
-          <Row className="thead-hide mtn-header mtn-row">
+          <Row className="thead-hide">
             <Col md="1" className="mtn-col">Favorite</Col>
             <Col md="1" className="mtn-col ">Rank</Col>
             <Col md="2" className="mtn-col ">Mountain</Col>

@@ -17,10 +17,12 @@ const sliderThumbStyles = (props) => (`
 const Styles = styled.div`
   display: flex;
   align-items: center;
-  color: #888;
+
   margin-top: 2rem;
   margin-bottom: 2rem;
-  
+  font-family: 'Special Elite', cursive;
+  padding: 1em;
+  color: #fff;
  
   .value {
     flex: 2;
@@ -87,7 +89,7 @@ export default class Slider extends React.Component {
     var yellow = "#ECBF2F"
     var red = "#ED463A"
 
-    if (rangeStart) {
+    if (this.props.min) {
       //resetTicks;
       console.log("rangestart");
     } else if (range1) {

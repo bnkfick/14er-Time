@@ -1,21 +1,22 @@
 import React, { Component } from "react";
 import Slider from "./Slider";
-import "./preferences.css";
-
+import styled from 'styled-components';
 import {
+    Row, 
+    Col,
     Button,
     Collapse,
-    Navbar,
-    NavbarToggler,
-    NavbarBrand,
-    Nav,
-    NavItem,
-    NavLink,
-    UncontrolledDropdown,
-    DropdownToggle,
-    DropdownMenu,
-    DropdownItem
 } from 'reactstrap';
+
+const StyledHeaderRow = styled(Row)`
+    padding-top: 3em;
+    padding-bottom: 2em;
+    background-color: rgba(19, 18, 18, 0.671);
+    backdrop-filter: blur(5px);   
+    -webkit-backdrop-filter: blur(5px); 
+    border-bottom: 1px solid whitesmoke; 
+`
+
 
 export default class Preferences extends Component {
     constructor(props) {
@@ -33,15 +34,15 @@ export default class Preferences extends Component {
     render() {
         return (
             <>
-                <div id="preferences" className="container glass spec-text">
-                    <div id="toggle-preference-box" className="row align-items-center justify-content-end partial-header">
-                        <div className="col-11">
-                            <h4 className="ls-25 mb-0">Climbing Condition Preferences</h4>
-                        </div>
-                        <div className="col-1 text-right">
-                            <i onClick={this.toggle} id="preference-btn" role="button" className="fas fa-plus-square fa-minus-square fa-2x"></i>
-                        </div>
-                    </div>
+                <div className="container glass">
+                    <StyledHeaderRow className="spec-text">
+                        <Col md="11">
+                            <h4>Climbing Condition Preferences</h4>
+                        </Col>
+                        <Col md="1">
+                            <i onClick={this.toggle} role="button" className="fas fa-plus-square fa-minus-square fa-2x"></i>
+                        </Col>
+                    </StyledHeaderRow>
                     <Collapse isOpen={this.state.collapse}>
 
 

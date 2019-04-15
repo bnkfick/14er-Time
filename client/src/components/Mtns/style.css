@@ -21,15 +21,14 @@ tbody {
 }
 
 .mtn-header {
-    background-color: #333;
-
-    color: whitesmoke;
-    border-top: 1px solid whitesmoke;
+    padding-top: 1em;
+    padding-bottom: .5em;
+    background-color: #000;
+    font-family: 'Poppins', sans-serif;
 }
 
 .mtn-row {
     font-family: 'Poppins', sans-serif;
-
     background-color: transparent;
     background: transparent;
     color: whitesmoke;
