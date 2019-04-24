@@ -4,9 +4,11 @@ const db = require("../models");
 
 passport.use(new LocalStrategy(
     function(username, password, done) {
+        console.log("LOOKING FOR USER");
         db.User.findOne({
             username: username
         }, function(err, user) {
+            console.log(user);
             if (err) {
                 console.log("something went wrong\n",err);
                 return done(err)

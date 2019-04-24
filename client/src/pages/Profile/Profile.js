@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "./Profile.scss";
 import { UserConsumer } from "../../context";
+import Auth from "../Auth/";
 import { Row, Col, Button } from "reactstrap";
 import { Link } from "react-router-dom";
 
@@ -92,12 +93,7 @@ import { Link } from "react-router-dom";
         </div>
             </>
           ) : (
-            <div>
-              <h1> Log in to view this page </h1>
-              <Link to="/login">
-                <Button> Login </Button>
-              </Link>
-            </div>
+            <Auth action="login" />
           )}
         </div>
       )}
