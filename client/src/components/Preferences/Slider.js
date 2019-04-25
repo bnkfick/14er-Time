@@ -6,6 +6,9 @@ const sliderThumbStyles = (props) => (`
   height: 15px;
 
   background: ${props.color};
+
+
+
   cursor: pointer;
   -webkit-transition: .2s;
   transition: opacity .2s;
@@ -18,11 +21,12 @@ const Styles = styled.div`
   display: flex;
   align-items: center;
 
-  margin-top: 2rem;
-  margin-bottom: 2rem;
+  margin-top: .5rem;
+  margin-bottom:1rem;
   font-family: 'Special Elite', cursive;
   padding: 1em;
   color: #fff;
+  border-bottom: 1px solid whitesmoke;
  
   .value {
     flex: 2;
@@ -77,7 +81,7 @@ export default class Slider extends React.Component {
 
   handleOnChange = (e) => {
     let value = e.target.value;
-    console.log(value);
+    // console.log(value);
     let rangeStart = this.props.min;
     let range1 = value <= this.props.range1;       
     let range2 = (value > this.props.range1) && (value <= this.props.range2);
@@ -89,8 +93,11 @@ export default class Slider extends React.Component {
     var green = "rgb(152, 248, 114)"
     var yellow = "#ECBF2F"
     var red = "#ED463A"
-
-    if (range1) {
+    console.log("RANGE 1: " + + this.props.range1 + " " + range1 + " " + value);
+    console.log("RANGE 2: " + + this.props.range2 + " " + range2 + " " + value);
+    console.log("RANGE 3: " + + this.props.range3 + " " + range3 + " " + value);    
+    console.log("RANGE 4: " + + this.props.range4 + " " + range4 + " " + value +"\n");
+    if  ( value <= this.props.range1 ) {
       //resetTicks;
       this.setState({
         color: blue
@@ -104,11 +111,13 @@ export default class Slider extends React.Component {
       //readoutBox.css("color", green);
     } else if (range3) {
       //resetTicks;
+
       this.setState({
         color: yellow
       })
       //readoutBox.css("color", yellow);
     } else if (range4) {
+
       this.setState({
         color: red
       })

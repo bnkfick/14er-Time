@@ -78,17 +78,41 @@ export default class Preferences extends Component {
                                         </div> */}
 
                         <Slider
-                            min="-20"
-                            max="60"
-                            range1="0"
-                            range2="20"
-                            range3="40"
-                            range4="60"
+                            min={-20}
+                            max={60}
+                            range1={0}
+                            range2={20}
+                            range3={40}
+                            range4={60}
                             label="Minimum Temperature"
                             units="&#176;F" />
-                        <Slider min="0" max="60" label="Max Wind Speeds" units="mph" />
-                        <Slider min="0" max="400" label="Max Distance" units="mi" />
-                        <Slider min="-20" max="60" label="Max Chance of Precipitation" units="%" />
+                        <Slider
+                            min={0}
+                            max={80}
+                            range1={20}
+                            range2={40}
+                            range3={60}
+                            range4={80}
+                            label="Max Wind Speeds"
+                            units="mph" />
+                        <Slider
+                            min={0}
+                            max={400}
+                            range1={100}
+                            range2={200}
+                            range3={300}
+                            range4={400}
+                            label="Max Distance"
+                            units="mi" />
+                        <Slider
+                            min={0}
+                            max={80}
+                            range1={20}
+                            range2={40}
+                            range3={60}
+                            range4={80}
+                            label="Max Chance of Precipitation" 
+                            units="%" />
 
                     </Collapse>
                 </div>
