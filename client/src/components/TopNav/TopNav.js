@@ -1,4 +1,5 @@
 import React, {Component} from "react";
+import { UserConsumer } from "../../context";
 import "./TopNav.scss";
 import {
     Collapse,
@@ -51,6 +52,13 @@ export default class Navigation extends Component {
                                 <DropdownToggle nav caret>
                                 <i className="fas fa-user-secret"></i>
                                 </DropdownToggle>
+                                <UserConsumer>
+                                {({ data, logout }) => data.loggedIn ?                 
+                                <DropdownMenu right>
+                                    <DropdownItem>
+                                        <NavLink id="logout-text" onClick={logout}>Logout</NavLink>
+                                    </DropdownItem>
+                                </DropdownMenu>: 
                                 <DropdownMenu right>
                                     <DropdownItem>
                                         <NavLink id="login-text" href="/login">Login</NavLink>
@@ -59,6 +67,8 @@ export default class Navigation extends Component {
                                         <NavLink id="signup-text" href="/signup">Signup</NavLink>
                                     </DropdownItem>
                                 </DropdownMenu>
+                                 }
+                                </UserConsumer>
                             </UncontrolledDropdown>
                         </Nav>
                     </Collapse>

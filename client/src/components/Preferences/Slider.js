@@ -7,14 +7,13 @@ const sliderThumbStyles = (props) => (`
 
   background: ${props.color};
 
-
-
   cursor: pointer;
   -webkit-transition: .2s;
   transition: opacity .2s;
 
   box-shadow: -100vw 0 0 100vw ${props.color};
-  border: 2px solid #999; 
+  outline: 1px solid #333; 
+
 `);
 
 const Styles = styled.div`
@@ -60,7 +59,8 @@ const Styles = styled.div`
     /* border-radius: 5px; */
     color: #F7F7F7;
     /* background: ${props => props.color}; */
-    outline: none;
+
+    outline: 1px solid #333; 
     &::-webkit-slider-thumb {
       -webkit-appearance: none;
       appearance: none;
@@ -75,7 +75,7 @@ const Styles = styled.div`
 export default class Slider extends React.Component {
   state = {
     value: this.props.min,
-    color: "#538D9F"
+    color: "#4286f4"
   }
 
 
@@ -89,39 +89,27 @@ export default class Slider extends React.Component {
     let range4 = (value > this.props.range3) && (value <= this.props.range4);
 
     // Set colors for ranges
-    var blue = "#538D9F"
+    var blue = "#4286f4"
     var green = "rgb(152, 248, 114)"
     var yellow = "#ECBF2F"
     var red = "#ED463A"
-    console.log("RANGE 1: " + + this.props.range1 + " " + range1 + " " + value);
-    console.log("RANGE 2: " + + this.props.range2 + " " + range2 + " " + value);
-    console.log("RANGE 3: " + + this.props.range3 + " " + range3 + " " + value);    
-    console.log("RANGE 4: " + + this.props.range4 + " " + range4 + " " + value +"\n");
+
     if  ( value <= this.props.range1 ) {
-      //resetTicks;
       this.setState({
         color: blue
       })
-      //readoutBox.css("color", blue);
     } else if (range2) {
-      //resetTicks;
       this.setState({
         color: green
       })
-      //readoutBox.css("color", green);
     } else if (range3) {
-      //resetTicks;
-
       this.setState({
         color: yellow
       })
-      //readoutBox.css("color", yellow);
     } else if (range4) {
-
       this.setState({
         color: red
       })
-      //readoutBox.css("color", red);
     };
 
     this.setState({
@@ -137,7 +125,11 @@ export default class Slider extends React.Component {
         </div>
        
         <input type="range" min={this.props.min} max={this.props.max} value={this.state.value} className="slider" onChange={this.handleOnChange} />
-        <div className="value">{this.state.value} {this.props.units}</div>
+        <div className="value">{this.state.value}{
+            this.state.value < this.props.max  
+              ? ""
+              : "+"}
+           {this.props.units}  </div>
       </Styles>
     )
   }
