@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import Slider from "./Slider";
 import styled from 'styled-components';
 import {
-    Row, 
+    Row,
     Col,
     Button,
     Collapse,
@@ -23,13 +23,12 @@ export default class Preferences extends Component {
         super(props);
         this.toggle = this.toggle.bind(this);
         this.state = { collapse: true };
+
     }
 
     toggle() {
         this.setState(state => ({ collapse: !state.collapse }));
     }
-
-
 
     render() {
         return (
@@ -46,7 +45,7 @@ export default class Preferences extends Component {
                     <Collapse isOpen={this.state.collapse}>
 
 
-                                        {/* <div className="slider slider-horizontal" id="">
+                        {/* <div className="slider slider-horizontal" id="">
                                             <div className="slider-track">
                                                 <div className="slider-track-low" style={{left: 0 + 'px', width: 0 + '%'}}></div>
                                                 <div className="slider-selection tick-slider-selection" style={{left: 0 + '%', width: 0 + '%'}}></div>
@@ -78,10 +77,18 @@ export default class Preferences extends Component {
                                             </div>
                                         </div> */}
 
-                                <Slider min="-20" max="60" label="Minimum Temperature" units="&#176;F"/>
-                                <Slider min="0" max="60" label="Max Wind Speeds" units="mph"/>
-                                <Slider min="0" max="400" label="Max Distance" units="mi"/>
-                                <Slider min="-20" max="60" label="Max Chance of Precipitation" units="%"/>
+                        <Slider
+                            min="-20"
+                            max="60"
+                            range1="0"
+                            range2="20"
+                            range3="40"
+                            range4="60"
+                            label="Minimum Temperature"
+                            units="&#176;F" />
+                        <Slider min="0" max="60" label="Max Wind Speeds" units="mph" />
+                        <Slider min="0" max="400" label="Max Distance" units="mi" />
+                        <Slider min="-20" max="60" label="Max Chance of Precipitation" units="%" />
 
                     </Collapse>
                 </div>

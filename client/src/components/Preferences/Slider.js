@@ -77,11 +77,12 @@ export default class Slider extends React.Component {
 
   handleOnChange = (e) => {
     let value = e.target.value;
-    let rangeStart = 0;
-    let range1 = value <= 0;
-    let range2 = (value > 0) && (value <= 20);
-    let range3 = (value > 20) && (value <= 40);
-    let range4 = (value > 40) && (value <= 60);
+    console.log(value);
+    let rangeStart = this.props.min;
+    let range1 = value <= this.props.range1;       
+    let range2 = (value > this.props.range1) && (value <= this.props.range2);
+    let range3 = (value > this.props.range2) && (value <= this.props.range3);
+    let range4 = (value > this.props.range3) && (value <= this.props.range4);
 
     // Set colors for ranges
     var blue = "#538D9F"
@@ -89,10 +90,7 @@ export default class Slider extends React.Component {
     var yellow = "#ECBF2F"
     var red = "#ED463A"
 
-    if (this.props.min) {
-      //resetTicks;
-      console.log("rangestart");
-    } else if (range1) {
+    if (range1) {
       //resetTicks;
       this.setState({
         color: blue
