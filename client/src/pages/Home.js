@@ -22,7 +22,14 @@ class Home extends Component {
         <p></p>
 
         <UserConsumer>
-          {({ data, logout }) => data.loggedIn ? <Preferences /> : "" }
+          {({ data, logout }) => {
+            console.log(data.user);
+            if (data.loggedIn) {
+
+              return <Preferences userId={data.user._id} />
+            }
+          }
+          }
         </UserConsumer>
 
         <p></p>

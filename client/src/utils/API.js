@@ -19,6 +19,12 @@ export default {
     return axios.get("/api/users/logout");
   },
 
+  getUserPreferences: function (userId) {
+    console.log("API.getUserPreferences");
+    console.log(userId);
+    return axios.get("/api/users/preferences");
+  },
+
   getMtns: function () {
     return axios.get("/api/mountains/");
   },

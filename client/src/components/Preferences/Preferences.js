@@ -1,4 +1,6 @@
 import React, { Component } from "react";
+
+import API from "../../utils/API";
 import Slider from "./Slider";
 import styled from 'styled-components';
 import {
@@ -26,8 +28,22 @@ export default class Preferences extends Component {
 
     }
 
+    componentDidMount() {
+        console.log("Preferences: " + this.props.userId);
+        API.getUserPreferences(this.props.userId)
+            .then(response => {
+                console.log(response.data);
+                //this.setState({ weatherData: response.data.properties.periods[0] });
+            })
+            .catch(err => console.log(err));
+    }
+
     toggle() {
         this.setState(state => ({ collapse: !state.collapse }));
+    }
+
+    savePreferences() {
+        console.log("SAVE PREFERENCES");
     }
 
     render() {
@@ -111,10 +127,13 @@ export default class Preferences extends Component {
                             range2={40}
                             range3={60}
                             range4={80}
-                            label="Max Chance of Precipitation" 
+                            label="Max Chance of Precipitation"
                             units="%" />
 
                     </Collapse>
+                    <button
+                        className="btn btn-outline-light submit-btn mb-5"
+                        onClick={this.savePreferences}>Save</button>
                 </div>
 
             </>

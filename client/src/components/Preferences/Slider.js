@@ -13,7 +13,6 @@ const sliderThumbStyles = (props) => (`
 
   box-shadow: -100vw 0 0 100vw ${props.color};
   outline: 1px solid #333; 
-
 `);
 
 const Styles = styled.div`
