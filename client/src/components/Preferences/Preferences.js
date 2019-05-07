@@ -21,21 +21,26 @@ const StyledHeaderRow = styled(Row)`
 
 
 export default class Preferences extends Component {
+    state = { 
+        collapse: true,
+        minTemp: this.props.user.preferences[0].tempMin,
+        maxWind: this.props.user.preferences[0].windLimit,
+        maxPrecip: this.props.user.preferences[0].precipLimit,
+        maxDist: this.props.user.preferences[0].distMax,
+    };
+
     constructor(props) {
         super(props);
         this.toggle = this.toggle.bind(this);
-        this.state = { collapse: true };
-
+        this.savePreferences = this.savePreferences.bind(this);
     }
 
     componentDidMount() {
-        console.log("Preferences: " + this.props.userId);
-        API.getUserPreferences(this.props.userId)
-            .then(response => {
-                console.log(response.data);
-                //this.setState({ weatherData: response.data.properties.periods[0] });
-            })
-            .catch(err => console.log(err));
+        console.log(`Preferences`);
+        console.log(this.props);
+        console.log(this.props.user);
+        console.log(this.props.user.preferences);
+        console.log(this.props.user.preferences[0]);
     }
 
     toggle() {
@@ -43,8 +48,28 @@ export default class Preferences extends Component {
     }
 
     savePreferences() {
+        console.log(this.state);
         console.log("SAVE PREFERENCES");
+        var newUserPreferences = {
+            _id: this.props.userId,
+            windLimit: this.state.maxWind,
+            precipLimit: this.state.maxPrecip,
+            tempMin: this.state.minTemp,
+            distMax: this.state.maxDist
+        };
+
+        API.saveUserPreferences(newUserPreferences, this.props.userId)
+        .then(response => {
+                console.log(response);
+                console.log("changed user preferences", newUserPreferences);
+            })
+            .catch(err => console.log(err));
     }
+
+    updateTemp   = value => { this.setState({minTemp: value}) };
+    updateWind   = value => { this.setState({maxWind: value}) };
+    updatePrecip = value => this.setState({ maxPrecip: value});
+    updateDist   = value => this.setState({maxDist: value});
 
     render() {
         return (
@@ -101,6 +126,8 @@ export default class Preferences extends Component {
                             range3={40}
                             range4={60}
                             label="Minimum Temperature"
+                            value={this.state.minTemp}
+                            handleSlide={this.updateTemp}
                             units="&#176;F" />
                         <Slider
                             min={0}
@@ -110,6 +137,8 @@ export default class Preferences extends Component {
                             range3={60}
                             range4={80}
                             label="Max Wind Speeds"
+                            value={10}
+                            handleSlide={this.updateWind}
                             units="mph" />
                         <Slider
                             min={0}
@@ -119,6 +148,8 @@ export default class Preferences extends Component {
                             range3={300}
                             range4={400}
                             label="Max Distance"
+                            value={this.state.maxDist}
+                            handleSlide={this.updateDist}
                             units="mi" />
                         <Slider
                             min={0}
@@ -128,6 +159,8 @@ export default class Preferences extends Component {
                             range3={60}
                             range4={80}
                             label="Max Chance of Precipitation"
+                            handleSlide={this.updatePrecip}
+                            value={this.state.maxPrecip}
                             units="%" />
 
                     </Collapse>

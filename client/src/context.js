@@ -45,7 +45,10 @@ class UserProvider extends Component {
                     window.location.href = '/profile';
                 } else {
                     console.log("Something went wrong :(")
-                    console.log(user);
+                    console.log(user.data);
+                    this.setState({
+                        failureMessage: user.data
+                    })
                 }
             });
         }
@@ -86,6 +89,7 @@ class UserProvider extends Component {
             console.log("isLoggedIn B");
             API.isLoggedIn().then(user => {
                 console.log("isLoggedIn C");
+                console.log(user.data);
                 if(user.data.loggedIn) {
                     console.log(user.data);
                     this.setState({

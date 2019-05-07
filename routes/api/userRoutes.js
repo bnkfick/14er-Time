@@ -33,7 +33,12 @@ router.post("/signup", function (req, res, next) {
             lastname: req.body.lastname,
             email: req.body.email,
             username: req.body.username,
-            password: req.body.password
+            password: req.body.password,
+            preferences: [
+              {
+                username: req.body.username,
+              }
+            ]
           })
           newUser.password = newUser.generateHash(req.body.password);
           newUser.save(function (err) {
@@ -82,59 +87,63 @@ router.get("/preferences", authMiddleware.isLoggedIn, function (req, res, next) 
   }).then(function (data) {
     res.json(data);
   });
-
 });
 
-router.post("/preferences/:userid", function (req, res) {
+router.post("/preferences", authMiddleware.isLoggedIn, function (req, res) {
+  console.log("router save preferences=> " + req.user);
+  console.log(req.body);
   var newUserPref = req.body;
-  //does the user already have preferences saved
-  db.UserPreference.findOne({
-    where: {
-      UserId: req.params.userid
+
+
+  // //does the user already have preferences saved
+  // db.UserPreference.findOne({
+  //   where: {
+  //     UserId: req.user._id
+  //   }
+  // }).then(function (data) {
+  //   console.log("DATA");
+  //   console.log(data);
+  //   if (data) {
+  //     //console.log(newUserPref);
+  //     db.UserPreference.update({
+  //       windLimit: req.body.windLimit,
+  //       precipLimit: newUserPref.precipLimit,
+  //       tempMin: newUserPref.tempMin,
+  //       distMax: newUserPref.distMax
+  //     }, {
+  //         where: {
+  //           UserId: req.params.userid
+  //         }
+  //       })
+  //       .then(function (result) {
+  //         if (result.changedRows == 0) {
+  //           return res.status(404).end();
+  //         } else {
+  //           console.log(`Updated User Preferences:  ${data}`);
+  //           res.json(result);
+  //         }
+  //       });
+  //     //if the user has preferences saved then do an update
+  //   } else {
+  //     //else do a create
+  // Create a new Book in the database
+
+
+  db.UserPreference.create(
+    {
+      UserId: req.params.userid,
+      windLimit: newUserPref.windLimit,
+      precipLimit: newUserPref.precipLimit,
+      tempMin: newUserPref.tempMin,
+      distMax: newUserPref.distMax
     }
-  }).then(function (data) {
-    if (data) {
-
-
-      //console.log(newUserPref);
-      db.UserPreference.update({
-        windLimit: req.body.windLimit,
-        precipLimit: newUserPref.precipLimit,
-        tempMin: newUserPref.tempMin,
-        distMax: newUserPref.distMax
-      }, {
-          where: {
-            UserId: req.params.userid
-          }
-        })
-        .then(function (result) {
-          if (result.changedRows == 0) {
-            return res.status(404).end();
-          } else {
-            //console.log(`Updated User Preferences:  ${data}`);
-            res.json(result);
-          }
-        });
-      //if the user has preferences saved then do an update
-    } else {
-      //else do a create
-
-      db.UserPreference.create(
-        {
-          UserId: req.params.userid,
-          windLimit: newUserPref.windLimit,
-          precipLimit: newUserPref.precipLimit,
-          tempMin: newUserPref.tempMin,
-          distMax: newUserPref.distMax
-        }
-      ).then(function (data) {
-        //console.log(`New User Preferences created:  ${data}`);
-      });
-    }
-
+  ).then(function (data) {
+    console.log(`New User Preferences created:  ${data}`);
   });
+  // }
 
 });
+
 
 
 module.exports = router;

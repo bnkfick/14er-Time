@@ -7,8 +7,15 @@ import { UserConsumer } from '../../context';
 function Auth(props) {
   return (
     <UserConsumer>
+
       {({ data, inputChange, handleLogin, handleSignup }) => (
+
         <div className="authBox">
+          {(data.failureMessage && (data.failureMessage.error != null)) ? (
+            <>{data.failureMessage.error[0]}</>
+          ) : (
+            <></>
+          )}
           {(props.action === "login") ? (
             <Login
               username={data.username}

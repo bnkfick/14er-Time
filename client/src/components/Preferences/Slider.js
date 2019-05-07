@@ -77,12 +77,17 @@ export default class Slider extends React.Component {
     color: "#4286f4"
   }
 
+  componentDidMount() {
+    console.log(`Slider`);
+    console.log(this.props.value);
+    this.setState({ value: this.props.value })
+  }
 
   handleOnChange = (e) => {
     let value = e.target.value;
     // console.log(value);
     let rangeStart = this.props.min;
-    let range1 = value <= this.props.range1;       
+    let range1 = value <= this.props.range1;
     let range2 = (value > this.props.range1) && (value <= this.props.range2);
     let range3 = (value > this.props.range2) && (value <= this.props.range3);
     let range4 = (value > this.props.range3) && (value <= this.props.range4);
@@ -93,7 +98,7 @@ export default class Slider extends React.Component {
     var yellow = "#ECBF2F"
     var red = "#ED463A"
 
-    if  ( value <= this.props.range1 ) {
+    if (value <= this.props.range1) {
       this.setState({
         color: blue
       })
@@ -114,6 +119,7 @@ export default class Slider extends React.Component {
     this.setState({
       value: e.target.value
     })
+    this.props.handleSlide(e.target.value);
   }
 
   render() {
@@ -122,13 +128,13 @@ export default class Slider extends React.Component {
         <div className="label-box">
           <label>{this.props.label}</label>
         </div>
-       
+
         <input type="range" min={this.props.min} max={this.props.max} value={this.state.value} className="slider" onChange={this.handleOnChange} />
         <div className="value">{this.state.value}{
-            this.state.value < this.props.max  
-              ? ""
-              : "+"}
-           {this.props.units}  </div>
+          this.state.value < this.props.max
+            ? ""
+            : "+"}
+          {this.props.units}  </div>
       </Styles>
     )
   }

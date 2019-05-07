@@ -41,12 +41,14 @@ if (process.env.NODE_ENV === "production") {
     app.use(express.static("client/build"));
 }
 
-
-  
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/reactauth", { useNewUrlParser: true }, function(err) {
-    if (err) throw err;
+mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fourteener", { useNewUrlParser: true }, 
+function(err) {
+    if (err) { 
+      console.log(error);
+      throw err; 
+    }
     console.log(`🐆  mongoose connection successful 🐆`.yellow);
     app.listen(PORT, (err)=> {
         if (err) throw err;

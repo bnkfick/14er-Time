@@ -24,6 +24,20 @@ export default {
     console.log(userId);
     return axios.get("/api/users/preferences");
   },
+  saveUserPreferences: function (userPreferences, userId) {
+    console.log("API.saveUserPreferences ");
+    console.log(userPreferences);
+    console.log(userId);
+    return axios.post('/api/users/preferences', {
+      userPreferences
+    })
+    .then(function (response) {
+      console.log(response);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+  },
 
   getMtns: function () {
     return axios.get("/api/mountains/");

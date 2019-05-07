@@ -26,7 +26,7 @@ class Home extends Component {
             console.log(data.user);
             if (data.loggedIn) {
 
-              return <Preferences userId={data.user._id} />
+              return <Preferences user={data.user} />
             }
           }
           }

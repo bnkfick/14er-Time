@@ -51,7 +51,7 @@ export default class Profile extends Component {
         <div className="container glass">
           <StyledHeaderRow className="spec-text">
             <Col md="11">
-              <h4>User Profile</h4>
+              <h4>Your User Info</h4>
             </Col>
             <Col md="1">
               {/* <i onClick={this.toggle} role="button" className="fas fa-plus-square fa-minus-square fa-2x"></i> */}
@@ -166,9 +166,6 @@ export default class Profile extends Component {
                 </div>
               )}
             </UserConsumer>
-
-
-
           </Collapse>
          
         </div>
