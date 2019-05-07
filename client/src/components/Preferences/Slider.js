@@ -73,19 +73,30 @@ const Styles = styled.div`
 
 export default class Slider extends React.Component {
   state = {
-    value: this.props.min,
+    value: this.props.value,
     color: "#4286f4"
   }
 
   componentDidMount() {
     console.log(`Slider`);
     console.log(this.props.value);
-    this.setState({ value: this.props.value })
+    this.setState({ value: this.props.value });
+    console.log(this.state.value);
+    this.setColor(this.props.value);
   }
 
   handleOnChange = (e) => {
     let value = e.target.value;
     // console.log(value);
+    this.setColor(value);
+
+    this.setState({
+      value: e.target.value
+    })
+    this.props.handleSlide(e.target.value);
+  }
+
+  setColor(value) {
     let rangeStart = this.props.min;
     let range1 = value <= this.props.range1;
     let range2 = (value > this.props.range1) && (value <= this.props.range2);
@@ -115,11 +126,6 @@ export default class Slider extends React.Component {
         color: red
       })
     };
-
-    this.setState({
-      value: e.target.value
-    })
-    this.props.handleSlide(e.target.value);
   }
 
   render() {
