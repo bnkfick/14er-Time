@@ -40,7 +40,6 @@ export default class Preferences extends Component {
         console.log(this.props);
         console.log(this.props.user);
         console.log(this.props.user.preferences);
-        console.log(this.props.user.preferences[0]);
     }
 
     toggle() {
@@ -51,13 +50,13 @@ export default class Preferences extends Component {
         console.log(this.state);
         console.log("SAVE PREFERENCES");
         var newUserPreferences = {
-            _id: this.props.userId,
+            username: this.props.user.username,
             windLimit: this.state.maxWind,
             precipLimit: this.state.maxPrecip,
             tempMin: this.state.minTemp,
             distMax: this.state.maxDist
         };
-
+        console.log(newUserPreferences);
         API.saveUserPreferences(newUserPreferences, this.props.userId)
         .then(response => {
                 console.log(response);

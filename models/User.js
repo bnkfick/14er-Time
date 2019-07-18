@@ -5,26 +5,26 @@ const bcrypt = require('bcrypt-nodejs');
 const Schema = mongoose.Schema;
 
 let userPreferenceSchema = new mongoose.Schema({
-      username: {
-        type: String
-      },
-      windLimit: {
-        type: String,
-        default: "10"
-      },
-      precipLimit: {
-        type: String,
-        default: "20"
-      },
-      tempMin: {
-        type: String,
-        default: "50"
-      },
-      distMax: {
-        type: String,
-        default: "100"
-      },
-  });
+    username: {
+      type: String
+    },
+    windLimit: {
+      type: String,
+      default: "10"
+    },
+    precipLimit: {
+      type: String,
+      default: "20"
+    },
+    tempMin: {
+      type: String,
+      default: "50"
+    },
+    distMax: {
+      type: String,
+      default: "200"
+    },
+});
 
 const userSchema = new Schema({
     firstname: {

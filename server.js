@@ -43,7 +43,7 @@ if (process.env.NODE_ENV === "production") {
 
 app.use(routes);
 
-mongoose.connect(process.env.MONGODB_URI || "mongodb://localhost/fourteener", { useNewUrlParser: true }, 
+mongoose.connect(process.env.MONGODB_URI || "mongodb://barbara:f0urteener@ds351987.mlab.com:51987/heroku_wvszh88q", { useNewUrlParser: true }, 
 function(err) {
     if (err) { 
       console.log(error);

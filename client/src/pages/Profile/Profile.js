@@ -26,15 +26,7 @@ export default class Profile extends Component {
 
   }
 
-  componentDidMount() {
-    console.log("Preferences: " + this.props.userId);
-    API.getUserPreferences(this.props.userId)
-      .then(response => {
-        console.log(response.data);
-        //this.setState({ weatherData: response.data.properties.periods[0] });
-      })
-      .catch(err => console.log(err));
-  }
+  
 
   toggle() {
     this.setState(state => ({ collapse: !state.collapse }));

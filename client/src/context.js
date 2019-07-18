@@ -63,7 +63,8 @@ class UserProvider extends Component {
                 lastname: this.state.lastname,
                 email: this.state.email,
                 username: this.state.username,
-                password: this.state.password
+                password: this.state.password,
+                preferences: [{username: this.state.username}]
             }).then(user => {
                 if (user.data.loggedIn) {
                     this.setState({
@@ -91,7 +92,7 @@ class UserProvider extends Component {
                 console.log("isLoggedIn C");
                 console.log(user.data);
                 if(user.data.loggedIn) {
-                    console.log(user.data);
+                    //console.log(user.data);
                     this.setState({
                         loggedIn: true,
                         user: user.data.user

@@ -34,11 +34,7 @@ router.post("/signup", function (req, res, next) {
             email: req.body.email,
             username: req.body.username,
             password: req.body.password,
-            preferences: [
-              {
-                username: req.body.username,
-              }
-            ]
+            preferences: [{username: req.body.username}]
           })
           newUser.password = newUser.generateHash(req.body.password);
           newUser.save(function (err) {
@@ -82,7 +78,7 @@ router.get("/preferences", authMiddleware.isLoggedIn, function (req, res, next) 
   console.log("router get preferences=> " + req.user);
   db.UserPreference.findOne({
     where: {
-      UserId: req.user._id
+      _id: req.user._id
     }
   }).then(function (data) {
     res.json(data);

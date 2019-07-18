@@ -29,7 +29,7 @@ export default {
     console.log(userPreferences);
     console.log(userId);
     return axios.post('/api/users/preferences', {
-      userPreferences
+      userPreferences, userId
     })
     .then(function (response) {
       console.log(response);
